@@ -10,5 +10,7 @@ namespace ML
     {
         public int IdEstado { get; set; }
         public string Estado { get; set; }
+
+
     }
 }
