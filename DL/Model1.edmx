@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LJLeenkedGroupModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CatEntidadFederativa">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreNomina" Type="varchar" MaxLength="10" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="ApellidoPaterno" Type="varchar" MaxLength="100" />
+          <Property Name="ApellidoMaterno" Type="varchar" MaxLength="100" />
+          <Property Name="IdEstado" Type="int" />
+        </EntityType>
+        <Association Name="FK__Empleado__IdEsta__1273C1CD">
+          <End Role="CatEntidadFederativa" Type="Self.CatEntidadFederativa" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatEntidadFederativa">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NombreNomina" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+          <Parameter Name="IdEstado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DellEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAllEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllEstado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetByIdEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="updateEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+          <Parameter Name="NombreNomina" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+          <Parameter Name="IdEstado" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="LJLeenkedGroupModelStoreContainer">
+          <EntitySet Name="CatEntidadFederativa" EntityType="Self.CatEntidadFederativa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Empleado__IdEsta__1273C1CD" Association="Self.FK__Empleado__IdEsta__1273C1CD">
+            <End Role="CatEntidadFederativa" EntitySet="CatEntidadFederativa" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LJLeenkedGroupModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CatEntidadFederativa">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empleadoes" Relationship="Self.FK__Empleado__IdEsta__1273C1CD" FromRole="CatEntidadFederativa" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreNomina" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstado" Type="Int32" />
+          <NavigationProperty Name="CatEntidadFederativa" Relationship="Self.FK__Empleado__IdEsta__1273C1CD" FromRole="Empleado" ToRole="CatEntidadFederativa" />
+        </EntityType>
+        <Association Name="FK__Empleado__IdEsta__1273C1CD">
+          <End Role="CatEntidadFederativa" Type="Self.CatEntidadFederativa" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatEntidadFederativa">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LJLeenkedGroupEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CatEntidadFederativas" EntityType="Self.CatEntidadFederativa" />
+          <EntitySet Name="Empleadoes" EntityType="Self.Empleado" />
+          <AssociationSet Name="FK__Empleado__IdEsta__1273C1CD" Association="Self.FK__Empleado__IdEsta__1273C1CD">
+            <End Role="CatEntidadFederativa" EntitySet="CatEntidadFederativas" />
+            <End Role="Empleado" EntitySet="Empleadoes" />
+          </AssociationSet>
+          <FunctionImport Name="AddEmpleado">
+            <Parameter Name="NombreNomina" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+            <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DellEmpleado">
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllEmpleado" ReturnType="Collection(LJLeenkedGroupModel.GetAllEmpleado_Result)" />
+          <FunctionImport Name="GetAllEstado" ReturnType="Collection(LJLeenkedGroupModel.GetAllEstado_Result)" />
+          <FunctionImport Name="GetByIdEmpleado" ReturnType="Collection(LJLeenkedGroupModel.GetByIdEmpleado_Result)">
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="updateEmpleado">
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="NombreNomina" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+            <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetAllEmpleado_Result">
+          <Property Type="Int32" Name="IdEmpleado" Nullable="false" />
+          <Property Type="String" Name="NombreNomina" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="IdEstado" Nullable="false" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetAllEstado_Result">
+          <Property Type="Int32" Name="IdEstado" Nullable="false" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetByIdEmpleado_Result">
+          <Property Type="Int32" Name="IdEmpleado" Nullable="false" />
+          <Property Type="String" Name="NombreNomina" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="IdEstado" Nullable="false" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="100" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LJLeenkedGroupModelStoreContainer" CdmEntityContainer="LJLeenkedGroupEntities">
+          <EntitySetMapping Name="CatEntidadFederativas">
+            <EntityTypeMapping TypeName="LJLeenkedGroupModel.CatEntidadFederativa">
+              <MappingFragment StoreEntitySet="CatEntidadFederativa">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleadoes">
+            <EntityTypeMapping TypeName="LJLeenkedGroupModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="NombreNomina" ColumnName="NombreNomina" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddEmpleado" FunctionName="LJLeenkedGroupModel.Store.AddEmpleado" />
+          <FunctionImportMapping FunctionImportName="DellEmpleado" FunctionName="LJLeenkedGroupModel.Store.DellEmpleado" />
+          <FunctionImportMapping FunctionImportName="GetAllEmpleado" FunctionName="LJLeenkedGroupModel.Store.GetAllEmpleado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LJLeenkedGroupModel.GetAllEmpleado_Result">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="NombreNomina" ColumnName="NombreNomina" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllEstado" FunctionName="LJLeenkedGroupModel.Store.GetAllEstado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LJLeenkedGroupModel.GetAllEstado_Result">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetByIdEmpleado" FunctionName="LJLeenkedGroupModel.Store.GetByIdEmpleado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LJLeenkedGroupModel.GetByIdEmpleado_Result">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="NombreNomina" ColumnName="NombreNomina" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="updateEmpleado" FunctionName="LJLeenkedGroupModel.Store.updateEmpleado" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
