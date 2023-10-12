@@ -9,7 +9,9 @@ namespace ML
     public class EntidadFederativa
     {
         public int IdEstado { get; set; }
+
         public string Estado { get; set; }
 
+       
     }
 }
