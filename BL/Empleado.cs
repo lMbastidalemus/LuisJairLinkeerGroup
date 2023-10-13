@@ -89,7 +89,7 @@ namespace BL
                                      ApellidoMaterno = Empleado.ApellidoMaterno,
                                      IdEstado = Empleado.IdEstado,
                                      Estado = Empleado.CatEntidadFederativa.Estado
-                                 }).SingleOrDefault();
+                                 }).First();
 
                     if (query != null)
                     {
