@@ -79,7 +79,7 @@ namespace BL
 
                     var query = (from Empleado in context.Empleadoes
                                  join CatEntidadFederativa in context.Empleadoes on Empleado.IdEstado equals CatEntidadFederativa.IdEstado
-                                 where Empleado.IdEstado == IdEmpleado
+                                 where Empleado.IdEmpleado == IdEmpleado
                                  select new
                                  {
                                      IdEmpleado = Empleado.IdEmpleado,

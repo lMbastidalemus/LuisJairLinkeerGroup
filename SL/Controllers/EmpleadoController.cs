@@ -12,9 +12,15 @@ namespace SL.Controllers
     {
         [Route("")]
         [HttpGet]
+SLMetodos_Id_Add
+        public IHttpActionResult GetById(int IdEmpleado)
+        {
+            ML.Result result = BL.Empleado.GetById(IdEmpleado);
+
         public IHttpActionResult GetAll(ML.Empleado empleado)
         {
             ML.Result result = BL.Empleado.GetAll();
+ master
             if (result.Correct)
             {
                 return Content(HttpStatusCode.OK, result);
@@ -24,6 +30,13 @@ namespace SL.Controllers
                 return Content(HttpStatusCode.BadRequest, result);
             }
         }
+
+ SLMetodos_Id_Add
+        [Route("")]
+        [HttpPost]
+        public IHttpActionResult Add(ML.Empleado empleado)
+        {
+            ML.Result result = BL.Empleado.Add(empleado);
 
         [Route("{IdEmpleado?}")]
         [HttpDelete]
@@ -47,6 +60,7 @@ namespace SL.Controllers
             empleado.IdEmpleado = IdEmpleado;
             ML.Result result = BL.Empleado.Update(empleado);
 
+master
             if (result.Correct)
             {
                 return Content(HttpStatusCode.OK, result);
