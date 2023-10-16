@@ -71,7 +71,7 @@ namespace SL.Controllers
             }
         }
 
-        [Route("IdEmpleado?")]
+        [Route("{IdEmpleado?}")]
         [HttpPut]
         public IHttpActionResult Update(int IdEmpleado, [FromBody] ML.Empleado empleado)
         {
