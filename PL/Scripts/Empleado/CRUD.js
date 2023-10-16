@@ -37,3 +37,18 @@ function GetAll() {
         }
     });
 };
+
+function EntidadFederativaGetAll() {
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:58538/api/empleado/Entidad',
+        success: function (result) {
+            $("#ddlCategorias").append('<option value="' + 0 + '">' + 'Seleccione una opción' + '</option>');
+            $.each(result.Objects, function (i, categoria) {
+                $("#ddlCategorias").append('<option value="'
+                    + categoria.IdCategoria + '">'
+                    + categoria.Descripcion + '</option>');
+            });
+        }
+    });
+}
