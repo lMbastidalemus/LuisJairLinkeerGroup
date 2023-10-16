@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h2>Empleados</h2>
+</div>
+
+<div class="table-responsive">
+    <table class="table" id="tblEmpleados">
+        <thead>
+            <tr>
+                <th class="btn btn-warning">Editar</th>
+                <th>Nombre Nomina</th>
+                <th>Nombre Empleado</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Estadp</th>
+                <th class="btn btn-danger">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Datos del Empleado</h4>
+            </div>
+
+            <div class="modal-body">
+                <form>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtNombreNomina" placeholder="Nombre Nomina" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtNombreEmpleado" placeholder="Nombre Empleado" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtApellidoPaterno" placeholder="Apellido Paterno" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtApellidoMaterno" placeholder="Apellido Materno" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtIdEstado" />
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn glyphicon glyphicon-pencil" id="btnUpdate" onclick="Update()">Actualizar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="modalClose()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
