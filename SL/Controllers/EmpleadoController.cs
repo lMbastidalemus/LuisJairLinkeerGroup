@@ -10,7 +10,7 @@ namespace SL.Controllers
     [RoutePrefix("api/empleado")]
     public class EmpleadoController : ApiController
     {
-        [Route("")]
+        [Route("{IdEmpleado}")]
         [HttpGet]
 
         public IHttpActionResult GetById(int IdEmpleado)
@@ -26,6 +26,8 @@ namespace SL.Controllers
             }
 
         }
+        [Route("")]
+        [HttpGet]
         public IHttpActionResult GetAll(ML.Empleado empleado)
         {
             ML.Result result = BL.Empleado.GetAll();
