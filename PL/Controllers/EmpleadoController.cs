@@ -9,9 +9,15 @@ namespace PL.Controllers
     public class EmpleadoController : Controller
     {
         // GET: Empleado
-        public ActionResult Index()
+        public ActionResult GetAll()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Form()
+        {
+            return View( new ML.Empleado());
         }
     }
 }
