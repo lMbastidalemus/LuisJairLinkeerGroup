@@ -42,6 +42,22 @@ namespace SL.Controllers
             }
         }
 
+        [Route("Entidad")]
+        [HttpGet]
+        public IHttpActionResult GetAllEntida(ML.EntidadFederativa entidad)
+        {
+            ML.Result result = BL.EntidadFederativa.GetAll();
+
+            if (result.Correct)
+            {
+                return Content (HttpStatusCode.OK, result);
+            }
+            else
+            {
+                return Content(HttpStatusCode.BadRequest, result);
+            }
+        }
+
 
         [Route("")]
         [HttpPost]
