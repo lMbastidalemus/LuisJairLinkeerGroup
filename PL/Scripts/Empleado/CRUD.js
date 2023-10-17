@@ -42,11 +42,11 @@ function EntidadFederativaGetAll() {
         type: 'GET',
         url: 'http://localhost:58538/api/empleado/Entidad',
         success: function (result) {
-            $("#ddlCategorias").append('<option value="' + 0 + '">' + 'Seleccione una opción' + '</option>');
-            $.each(result.Objects, function (i, categoria) {
-                $("#ddlCategorias").append('<option value="'
-                    + categoria.IdCategoria + '">'
-                    + categoria.Descripcion + '</option>');
+            $("#ddlEstados").append('<option value="' + 0 + '">' + 'Seleccione una opción' + '</option>');
+            $.each(result.Objects, function (i, Entidad) {
+                $("#ddlEstados").append('<option value="'
+                    + Entidad.IdEstado + '">'
+                    + Entidad.Estado + '</option>');
             });
         }
     });
@@ -64,6 +64,7 @@ function Add() {
             IdCategoria: $('#ddlEntidad').val()
         }
     }
+
     $.ajax({
         type: 'POST',
         url: 'http://localhost:14982/api/SubCategoria/Add',
@@ -76,4 +77,70 @@ function Add() {
             alert('Error en la consulta.' + result.responseJSON.ErrorMessage);
         }
     });
+};
+
+function GetById() {
+    $.ajax({
+        type: "GET",
+        url: 'http://localhost:58538/api/empleado/' + IdEmpleado,
+        success: function (result) {
+            $('txtIdEmpleado').val(result.Object.IdEmpleado)
+            $('txtNombreNomina').val(result.Object.NombreNomina);
+            $('txtNombre').val(result.Object.Nombre);
+            $('txtApellidoPaterno').val(result.Object.ApellidoPaterno);
+            $('txtApellidoMaterno').val(result.Object.ApellidoMaterno);
+            $('txtIdEstado').val(result.Object.IdEstado);
+
+            $('ModalUpdate').modal('show');
+        },
+        error: function (result) {
+            alert('Error en la consulta.' + result.responseJSON.ErrorMessage);
+        }
+    })
+};
+
+
+function Update() {
+    var Empleado = {
+        IdEmpleado: 0,
+        NombreNomina: $('#txtNombreNomina'),
+        Nombre: $('#txtNombre').val(),
+        ApellldoPaterno: $('#txtApellidoPaterno').val(),
+        ApellldoMaterno: $('#txtApellidoMaterno').val(),
+        Categoria: {
+            IdCategoria: $('#ddlEntidad').val()
+        }
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:58538/api/empleado',
+        datatype: 'json',
+        data: subcategoria,
+        success: function (result) {
+            $('#myModal').modal();
+            $('#Modal').modal('show');
+            GetAll();
+            Console(respond);
+        },
+        error: function (result) {
+            alert('Error en la consulta.' + result.responseJSON.ErrorMessage);
+        }
+    });
+};
+
+function Delete() {
+    if (confirm("Estas seguro de eliminar el usuario? ")) {
+        $.ajax({
+            type: 'DELETE',
+            url: 'http://localhost:58538/api/empleado/' + IdEmpleado,
+            success: function (result) {
+                $('#myModal').modal();
+                GetAll();
+            },
+            error: function (result) {
+                alert('Error en la consulta.' + result.responseJSON.ErrorMessage);
+            }
+        });
+    };
 };
