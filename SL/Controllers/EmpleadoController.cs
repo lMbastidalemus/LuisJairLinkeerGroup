@@ -28,7 +28,7 @@ namespace SL.Controllers
         }
         [Route("")]
         [HttpGet]
-        public IHttpActionResult GetAll(ML.Empleado empleado)
+        public IHttpActionResult GetAll()
         {
             ML.Result result = BL.Empleado.GetAll();
 

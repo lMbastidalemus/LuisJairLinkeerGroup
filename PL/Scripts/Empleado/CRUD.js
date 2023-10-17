@@ -15,15 +15,15 @@ function GetAll() {
             $.each(result.Objects, function (i, Empleado) {
                 var filas =
                     '<tr>'
-                    + '<td class="text-center"> '+'<a href="#" onclick="GetById(' + Empleado.IdEmpleado + ')">' + '</a> ' + '</td>'
-
-                    + "<td  id='id' class='text-center'>" + Empleado.IdEmpleado + "</td>"
+                    //+ '<td class="text-center"> '+'<a href="#" onclick="GetById(' + Empleado.IdEmpleado + ')">' + '</a> ' + '</td>'
+                    + '<td class="text-center">' +'<button class="btn glyphicon glyphicon-pencil"  onclick = "GetbyId(' + Empleado.IdEmpleado + ')" >Actualizar</button ></td>'
+                    //+ "<td  id='id' class='text-center'>" + Empleado.IdEmpleado + "</td>"
 
                     + "<td class='text-center'>" + Empleado.NombreNomina + "</td>"
                     + "<td class='text-center'>" + Empleado.Nombre + "</ td>"
                     + "<td class='text-center'>" + Empleado.ApellidoPaterno + "</td>"
                     + "<td class='text-center'>" + Empleado.ApellidoMaterno + "</td>"
-                    + "<td class='text-center'>" + Empleado.Estado.Estado + "</td>"
+                    + "<td class='text-center'>" + Empleado.Entidad.Estado + "</td>"
 
                     + '<td class="text-center"> <button class="btn btn-danger" onclick="Eliminar(' + Empleado.IdEmpleado + ')"><span class="glyphicon glyphicon-trash" style="color:#FFFFFF"></span></button></td>'
 
