@@ -19,7 +19,7 @@ namespace BL
                 {
 
                     var query = (from Empleado in context.Empleadoes
-                                 join CatEntidadFederativa in context.Empleadoes on Empleado.IdEstado equals CatEntidadFederativa.IdEstado
+                                 join CatEntidadFederativa in context.CatEntidadFederativas on Empleado.IdEstado equals CatEntidadFederativa.IdEstado
                                  select new
                                  {
                                      IdEmpleado = Empleado.IdEmpleado,
@@ -27,7 +27,7 @@ namespace BL
                                      Nombre = Empleado.Nombre,
                                      ApellidoPaterno = Empleado.ApellidoPaterno,
                                      ApellidoMaterno = Empleado.ApellidoMaterno,
-                                     IdEstado = Empleado.IdEstado,
+                                     IdEstado = Empleado.CatEntidadFederativa.IdEstado,
                                      Estado = Empleado.CatEntidadFederativa.Estado
                                  });
 
@@ -46,7 +46,7 @@ namespace BL
                             empleado.ApellidoPaterno = item.ApellidoPaterno;
                             empleado.ApellidoMaterno = item.ApellidoMaterno;
                             empleado.Entidad = new ML.EntidadFederativa();
-                            empleado.Entidad.IdEstado = item.IdEstado.Value;
+                            empleado.Entidad.IdEstado = item.IdEstado;
                             empleado.Entidad.Estado = item.Estado;
 
                             result.Objects.Add(empleado);
