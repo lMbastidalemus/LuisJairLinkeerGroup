@@ -44,7 +44,7 @@ namespace SL.Controllers
 
         [Route("Entidad")]
         [HttpGet]
-        public IHttpActionResult GetAllEntida(ML.EntidadFederativa entidad)
+        public IHttpActionResult GetAllEntida()
         {
             ML.Result result = BL.EntidadFederativa.GetAll();
 

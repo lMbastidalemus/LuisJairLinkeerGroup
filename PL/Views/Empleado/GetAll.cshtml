@@ -8,7 +8,7 @@
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="~/Scripts/Empleado/CRUD.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <div class="table-responsive">
     <table class="table" id="tblEmpleados">
@@ -19,8 +19,8 @@
                 <th>Nombre Empleado</th>
                 <th>Apellido Paterno</th>
                 <th>Apellido Materno</th>
-                <th>Estadp</th>
-                <th class="btn btn-success">Agregar</th>
+                <th>Estado</th>
+                <th type="button" class="btn btn-info btn-lg" data-toggle="modal" onclick="ShowModal()" id="agregar">Agregar</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -51,15 +51,48 @@
                         <input type="text" class="form-control" id="txtApellidoMaterno" placeholder="Apellido Materno" />
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="txtIdEstado" />
+                        <select onclick="EntidadFederativaGetAll()" id="txtIdEstado">
+                            
+                        </select>
                     </div>
+
                 </form>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn glyphicon glyphicon-pencil" id="btnUpdate" onclick="Update()">Actualizar</button>
+                <button type="button" class="btn glyphicon glyphicon-pencil" id="btnUpdate" onclick="Add()">Actualizar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="modalClose()">Cancelar</button>
             </div>
         </div>
     </div>
 </div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Detalle</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <h5>
+                                Acción completada con éxito
+                            </h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" value="Regresar" data-dismiss="modal">Regresar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
